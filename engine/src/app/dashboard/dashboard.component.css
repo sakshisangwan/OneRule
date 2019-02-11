@@ -1,0 +1,46 @@
+thead {
+	text-align: center;
+	font-family: 'Sarabun', sans-serif;
+}
+
+tbody {
+	text-align: center;
+	color: #696868;
+	font-family: 'Inconsolata', monospace;
+}
+
+.page-link {
+	color: #369;
+}
+
+.page-item.active .page-link {
+	background-color: #369;
+	border-color: #369;
+}
+
+h1 {
+	/*text-align: center;*/
+	font-size: 30px;
+}
+
+h3 {
+	text-align: center;
+	font-size: 20px;
+	color: #696868;
+}
+
+.modal {
+	color: #696868;
+	font-family: 'Inconsolata', monospace;
+}
+
+.modal-head {
+	color: #369;
+	margin-left: 20px;
+	text-align: center;
+	font-family: 'Sarabun', sans-serif;
+}
+
+.btn-space {
+    margin-left: 100px;
+}

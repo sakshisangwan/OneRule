@@ -1,0 +1,40 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/engine/dist
+/engine/tmp
+/engine/out-tsc
+
+# dependencies
+/engine/node_modules
+/engine_backend/node_modules
+
+# IDEs and editors
+/engine/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/engine/.sass-cache
+/engine/connect.lock
+/engine/coverage
+/engine/libpeerconnection.log
+/engine/npm-debug.log
+/engine/yarn-error.log
+/engine/testem.log
+/engine/typings
+
+# System Files
+.DS_Store
+Thumbs.db
