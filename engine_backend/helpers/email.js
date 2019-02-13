@@ -7,12 +7,12 @@ module.exports = {
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
-                        user: "********", // sender's gmail address
-                        pass: "********"  // sender's gmail password
+                        user: "******", // sender's gmail address
+                        pass: "******"  // sender's gmail password
                     }
                 });
                 var helperOptions = {
-                    from: '********',    // email from which the mail has to be sent
+                    from: '******',    // email from which the mail has to be sent
                     to: receiver.toString(),
                     subject: 'Condition Met',
                     html: `Hey, the condition for campaign: ` + campaignName + ` has met for rule: ` + ruleName + `.`

@@ -14,6 +14,20 @@ module.exports = {
 			});
 		}
 		else if(req.body._id) {
+			if(req.body.symbType) {
+				if(req.body.symb1 == 'gte' && req.body.symb2 == 'lte'){
+					req.body.symbType = 1;
+				}
+				else if(req.body.symb1 == 'gte' && req.body.symb2 == 'gte') {
+					req.body.symbType = 2;
+				}
+				else if(req.body.symb1 == 'lte' && req.body.symb2 == 'lte') {
+					req.body.symbType = 3;
+				}
+				else if(req.body.symb1 == 'lte' && req.body.symb2 == 'gte') {
+					req.body.symbType = 4;
+				}
+			}
 			Rule.findOneAndUpdate({ _id: req.body._id }, { $set: req.body }, { new: true })
 				.then(success => {
                     if (!success) {
@@ -111,7 +125,7 @@ module.exports = {
 // -------------------- Cron job that runs every 15 minutes -------------------------
 
 var CronJob = require('cron').CronJob;
-new CronJob('* 15 * * * *', function() {
+new CronJob('1 * * * * *', function() {
 	
 	Rule.find({ status:"activated" }) 
 		.then(success => {
@@ -130,8 +144,9 @@ new CronJob('* 15 * * * *', function() {
 					query2[cond2] = {$lte: val2};
 					Campaign.find({ $and: [query1, query2, {campaignName: campaignName}]})
 					.then(result => {
-						Async.forEachLimit(result, 1, (i, next) => {
+						Async.forEachLimit(result, 1, (i, callback) => {
 							email.conditionMail('email address', campaignName, ruleName);
+							callback();
 						})
 					})
 					.catch(err => {
@@ -143,8 +158,9 @@ new CronJob('* 15 * * * *', function() {
 					query2[cond2] = {$gte: val2};
 					Campaign.find({ $and: [query1, query2, {campaignName: campaignName}]})
 					.then(result => {
-						Async.forEachLimit(result, 1, (i, next) => {
+						Async.forEachLimit(result, 1, (i, callback) => {
 							email.conditionMail('email address', campaignName, ruleName);
+							callback();
 						})
 					})
 					.catch(err => {
@@ -156,8 +172,9 @@ new CronJob('* 15 * * * *', function() {
 					query2[cond2] = {$lte: val2};
 					Campaign.find({ $and: [query1, query2, {campaignName: campaignName}]})
 					.then(result => {
-						Async.forEachLimit(result, 1, (i, next) => {
+						Async.forEachLimit(result, 1, (i, callback) => {
 							email.conditionMail('email address', campaignName, ruleName);
+							callback();
 						})
 					})
 					.catch(err => {
@@ -169,14 +186,16 @@ new CronJob('* 15 * * * *', function() {
 					query2[cond2] = {$gte: val2};
 					Campaign.find({ $and: [query1, query2, {campaignName: campaignName}]})
 					.then(result => {
-						Async.forEachLimit(result, 1, (i, next) => {
+						Async.forEachLimit(result, 1, (i, callback) => {
 							email.conditionMail('email address', campaignName, ruleName);
+							callback();
 						})
 					})
 					.catch(err => {
 						console.log("err..........",err);
 					})
 				}
+				next();
 				
 			})
 		})

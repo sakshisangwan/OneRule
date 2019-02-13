@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
 
   isLogin() {
     if(!localStorage.getItem('_id')) {
-      this.toastr.success('Please login first.');
+      this.toastr.error('Please login first.');
       this.router.navigateByUrl('/');   
     }
   }
